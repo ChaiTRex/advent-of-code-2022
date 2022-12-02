@@ -3,4 +3,6 @@ module Main where
 import AoC  (day)
 
 main :: IO ()
-main = print . day $ 7
+main = do
+    input <- day 7
+    print input

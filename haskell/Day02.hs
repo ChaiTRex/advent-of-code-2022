@@ -20,6 +20,7 @@ partTwoScores = listArray (0, 8) [3, 4, 8, 1, 5, 9, 2, 6, 7]
 
 main :: IO ()
 main = do
-    let xs = map (\ (opponent : _ : me : _) -> 3*ord opponent + ord me - 283) . lines . day $ 2
+    input <- day 2
+    let xs = map (\ (opponent : _ : me : _) -> 3*ord opponent + ord me - 283) . lines $ input
     putStrLn . showString "Part 1: " . show . sum1 . map (fromIntegral . (partOneScores !)) $ xs
     putStrLn . showString "Part 2: " . show . sum1 . map (fromIntegral . (partTwoScores !)) $ xs

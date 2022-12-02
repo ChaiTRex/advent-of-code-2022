@@ -6,9 +6,8 @@ import System.IO         (readFile)
 import System.IO.Unsafe  (unsafePerformIO)
 
 {-# INLINE day #-}
-day :: Word8 -> String
-day d = if d == 0 || d > 25 then error . shows d $ " is not between 1 and 25."
-        else                     unsafePerformIO . readFile $ filepaths ! d
+day :: Word8 -> IO String
+day d = readFile (filepaths ! d)
   where
     filepaths :: Array Word8 String
     filepaths = listArray (1, 25) [

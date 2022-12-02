@@ -11,6 +11,7 @@ sum1 = foldl1' (+)
 
 main :: IO ()
 main = do
-    let xs = sortBy (flip compare) . map (sum1 . map read) . splitWhen null . lines . day $ 1
+    input <- day 1
+    let xs = sortBy (flip compare) . map (sum1 . map read) . splitWhen null . lines $ input
     putStrLn . showString "Part 1: " . show . head $ xs
     putStrLn . showString "Part 2: " . show . sum1 . take 3 $ xs
