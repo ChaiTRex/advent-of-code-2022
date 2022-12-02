@@ -1,5 +1,5 @@
 fn main() {
-    static SCORES: [(u16, u16); 9] = [
+    static SCORES: [(u8, u8); 9] = [
         (4, 3),
         (8, 4),
         (3, 8),
@@ -17,8 +17,8 @@ fn main() {
         let line = line.as_bytes();
         let (part_1_score, part_2_score) = SCORES[3 * line[0] as usize + line[2] as usize - 283];
 
-        part_1 += part_1_score;
-        part_2 += part_2_score;
+        part_1 += part_1_score as u16;
+        part_2 += part_2_score as u16;
     }
 
     println!("Part 1: {part_1}");
