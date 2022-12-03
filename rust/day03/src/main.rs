@@ -37,26 +37,18 @@ fn main() {
                 None => break 'outer,
             };
 
-            {
-                let (left_half, right_half) = line.split_at(line.len() >> 1);
-                let mut left_set = 0_u64;
-                for byte in left_half.iter().copied() {
-                    left_set |= 1 << PRIORITIES[byte as usize];
-                }
-                let mut right_set = 0_u64;
-                for byte in right_half.iter().copied() {
-                    right_set |= 1 << PRIORITIES[byte as usize];
-                }
-                part_1 += (left_set & right_set).trailing_zeros() as u16;
+            let (left_half, right_half) = line.split_at(line.len() >> 1);
+            let mut left_set = 0_u64;
+            for byte in left_half.iter().copied() {
+                left_set |= 1 << PRIORITIES[byte as usize];
+            }
+            let mut right_set = 0_u64;
+            for byte in right_half.iter().copied() {
+                right_set |= 1 << PRIORITIES[byte as usize];
             }
 
-            {
-                let mut part_2_line_set = 0_u64;
-                for byte in line.iter().copied() {
-                    part_2_line_set |= 1 << PRIORITIES[byte as usize];
-                }
-                part_2_set &= part_2_line_set;
-            }
+            part_1 += (left_set & right_set).trailing_zeros() as u16;
+            part_2_set &= left_set | right_set;
         }
 
         part_2 += part_2_set.trailing_zeros() as u16;
